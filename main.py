@@ -3,9 +3,11 @@ import numpy as np
 
 filename =  input("Enter the Image name (Very Case Sensitive) : ")
 with Image.open(filename) as img:
+    #Convert image to RGB and resize it to 75 to ensure the program doesnt error :)
     img = img.convert("RGB")
     img = img.resize ((75,75))
 
+#Generate code.org settings
 temprgbnum = 24
 imagebinary = ""
 imagebinary += ''.join(''.join(str((byte >> i) & 1) for i in range(7, -1, -1)) for byte in img.size[0].to_bytes(1,byteorder='big'))
@@ -14,6 +16,7 @@ imagebinary += ''.join(''.join(str((byte >> i) & 1) for i in range(7, -1, -1)) f
 
 image_array = list(img.getdata())
 
+#Convert every pixel to binary
 for pixel in image_array:
     r = ''.join(''.join(str((byte >> i) & 1) for i in range(7, -1, -1)) for byte in pixel[0].to_bytes(1,byteorder='big'))
     g = ''.join(''.join(str((byte >> i) & 1) for i in range(7, -1, -1)) for byte in pixel[1].to_bytes(1,byteorder='big'))
@@ -22,12 +25,7 @@ for pixel in image_array:
     print(r,g,b)
     imagebinary += rgb
 
+#Save binary to a txt file
 with open("output.txt", "w") as text_file:
-    # Write the string to the file
     text_file.write(imagebinary)
-    print("Saved to output.txt :3")
-
-# Convert the RGB data to bytes
-#image_array = bytes([value for pixel in image_array for value in pixel])
-#image_array = ''.join(''.join(str((byte >> i) & 1) for i in range(7, -1, -1)) for byte in image_array)
-#print(image_array)
+    print("Saved to output.txt")
