@@ -1,6 +1,6 @@
 1. download the requirements, you just need Pillow(PIL) and numpy
 ```
-py -m pip install PIL
+py -m pip install Pillow
 ```
 and then do
 ```
