@@ -2,7 +2,6 @@
 ```
 py -m pip install Pillow
 ```
-and then do
 ```
 py -m install numpy
 ```
